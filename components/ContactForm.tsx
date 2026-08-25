@@ -24,11 +24,17 @@ export default function ContactForm() {
 
         setErrors(nextErrors);
         if (Object.keys(nextErrors).length > 0) return;
+
         setStatus("submitting");
-
         try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, message }),
+            });
 
-            await new Promise((resolve) => setTimeout(resolve, 900));
+            if (!response.ok) throw new Error("Request failed");
+
             setStatus("success");
             form.reset();
         } catch {
@@ -58,7 +64,7 @@ export default function ContactForm() {
                     autoComplete="name"
                     aria-invalid={Boolean(errors.name)}
                     aria-describedby={errors.name ? "name-error" : undefined}
-                    className=" transition-colors duration-500 mt-2 w-full rounded border border-zinc-800 bg-zinc-900/40 px-4 py-3 font-sans text-sm text-zinc-200 outline-none placeholder:text-zinc-600 focus:border-cyan-400 focus:outline focus:outline-cyan-400 focus:outline-offset-2"
+                    className="mt-2 w-full rounded border border-zinc-800 bg-zinc-900/40 px-4 py-3 font-sans text-sm text-zinc-200 outline-none placeholder:text-zinc-600 focus:border-cyan-400"
                     placeholder="Your name"
                 />
                 {errors.name && (
