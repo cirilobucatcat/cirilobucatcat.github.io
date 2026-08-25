@@ -1,6 +1,6 @@
 import Hero from "../components/Hero";
 import Projects from "../components/Projects";
-import Education from "../components/Education";
+import TechStack from "../components/TechStack";
 import Services from "../components/Services";
 import Certificates from "../components/Certificates";
 import Contact from "../components/Contact";
@@ -13,7 +13,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <Projects />
-        <Education />
+        <TechStack />
         <Services />
         <Certificates />
         <Contact />

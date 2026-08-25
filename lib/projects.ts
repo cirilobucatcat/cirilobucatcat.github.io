@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
         summary:
             "WeakChat is a real-time messaging app focused on speed and clarity over feature bloat. Messages sync instantly across devices, threads stay readable even in busy group chats, and the whole interface is built to disappear so people can focus on the conversation, not the app.",
         tags: ["Real-time", "Chat", "Full-stack"],
-        stack: ["Next.js", "TypeScript", "WebSockets", "PostgreSQL"],
+        stack: ["Next.js", "TypeScript", "Firebase", "PWA"],
         features: [
             "Instant message delivery with optimistic UI updates",
             "Threaded replies that stay readable in busy channels",
@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
             "Responsive layout that works from phone to widescreen",
         ],
         role: "Solo developer",
-        year: "2025",
+        year: "2026",
         liveUrl: "#",
         repoUrl: "#",
         image: "https://placehold.co/640x400/18181b/22d3ee?text=WeakChat",

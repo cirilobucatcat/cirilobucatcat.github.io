@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const SECTIONS = [
     { id: "hero", index: "01" },
     { id: "projects", index: "02" },
-    { id: "education", index: "03" },
+    { id: "stack", index: "03" },
     { id: "services", index: "04" },
     { id: "certificates", index: "05" },
     { id: "contact", index: "06" },
@@ -41,7 +41,7 @@ export default function EditorGutter() {
                         <li key={id} className="relative">
                             <span
                                 aria-hidden="true"
-                                className={`absolute -left-6 top-2.5 h-2 w-2 rounded-full transition-colors ${isActive ? "bg-cyan-400" : "bg-zinc-700"
+                                className={`absolute -left-6 top-1 h-2 w-2 rounded-full transition-colors ${isActive ? "bg-cyan-400" : "bg-zinc-700"
                                     }`}
                             />
                             <a
@@ -56,6 +56,6 @@ export default function EditorGutter() {
                     );
                 })}
             </ol>
-        </nav>
+        </nav >
     );
 }

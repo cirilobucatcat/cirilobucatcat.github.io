@@ -63,8 +63,9 @@ const personJsonLd = {
   jobTitle: ["Web Developer", "Software Developer", "Software Engineer"],
   alumniOf: {
     "@type": "CollegeOrUniversity",
-    name: "ABC University",
+    name: "Leyte Normal University",
   },
+  knowsAbout: ["JavaScript", "TypeScript", "Python", "React", "Next.js", "Tailwind CSS", "Node.js", "PostgreSQL", "Docker"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
