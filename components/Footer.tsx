@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 const NAV_ITEMS = [
-    { href: "#hero", label: "Hero" },
-    { href: "#projects", label: "Projects" },
-    { href: "#education", label: "Education" },
-    { href: "#services", label: "Services" },
-    { href: "#certificates", label: "Certificates" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#hero", label: "Hero" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#education", label: "Education" },
+    { href: "/#services", label: "Services" },
+    { href: "/#certificates", label: "Certificates" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 export default function Footer() {
@@ -16,9 +18,9 @@ export default function Footer() {
                     <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-widest text-zinc-600">
                         {NAV_ITEMS.map((item) => (
                             <li key={item.href}>
-                                <a href={item.href} className="hover:text-cyan-400">
+                                <Link href={item.href} className="hover:text-cyan-400">
                                     {item.label}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>

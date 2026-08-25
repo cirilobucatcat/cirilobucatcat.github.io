@@ -5,12 +5,12 @@ import Link from "next/link";
 import { MenuIcon, CloseIcon } from "./icons";
 
 const NAV_ITEMS = [
-    { href: "#hero", label: "Hero" },
-    { href: "#projects", label: "Projects" },
-    { href: "#education", label: "Education" },
-    { href: "#services", label: "Services" },
-    { href: "#certificates", label: "Certificates" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#hero", label: "Hero" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#education", label: "Education" },
+    { href: "/#services", label: "Services" },
+    { href: "/#certificates", label: "Certificates" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 export default function Header() {
@@ -34,11 +34,7 @@ export default function Header() {
     return (
         <header className="fixed inset-x-0 top-0 z-50 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur">
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:px-8">
-                <Link
-                    href="#hero"
-                    className="font-mono text-sm font-semibold tracking-tight text-zinc-100"
-                    onClick={() => setOpen(false)}
-                >
+                <Link href="/" className="font-mono text-sm font-semibold tracking-tight text-zinc-100" onClick={() => setOpen(false)}>
                     Cirilo Bucatcat Jr.
                 </Link>
 
@@ -66,19 +62,11 @@ export default function Header() {
                 </button>
             </div>
 
-            <nav
-                id="mobile-nav"
-                aria-label="Mobile"
-                className={`border-t border-zinc-900 bg-zinc-950 lg:hidden ${open ? "block" : "hidden"}`}
-            >
+            <nav id="mobile-nav" aria-label="Mobile" className={`border-t border-zinc-900 bg-zinc-950 lg:hidden ${open ? "block" : "hidden"}`}>
                 <ul className="flex flex-col px-5 py-4 font-mono text-sm uppercase tracking-widest text-zinc-400">
                     {NAV_ITEMS.map((item) => (
                         <li key={item.href} className="border-b border-zinc-900 last:border-0">
-                            <Link
-                                href={item.href}
-                                className="block py-3 hover:text-cyan-400"
-                                onClick={() => setOpen(false)}
-                            >
+                            <Link href={item.href} className="block py-3 hover:text-cyan-400" onClick={() => setOpen(false)}>
                                 {item.label}
                             </Link>
                         </li>
