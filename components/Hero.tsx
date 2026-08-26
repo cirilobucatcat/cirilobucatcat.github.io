@@ -98,9 +98,8 @@ export default function Hero() {
                     variants={roleLine}
                     className="mt-6 max-w-2xl font-mono text-sm text-zinc-500 sm:text-base"
                 >
-                    <span className="text-zinc-300">Full-stack Web Developer <span className="text-cyan-400">/</span> Software Developer <span className="text-cyan-400">/</span> Software Engineer </span>
+                    <span className="text-zinc-300">Full-stack Web Developer </span>
                 </motion.div>
-
                 <motion.p
                     variants={item}
                     className="mt-8 max-w-xl font-sans text-base leading-relaxed text-zinc-400 sm:text-lg"
