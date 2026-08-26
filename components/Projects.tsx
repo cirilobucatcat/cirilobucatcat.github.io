@@ -2,10 +2,12 @@ import SectionEyebrow from "./SectionEyebrow";
 import ProjectCard from "./ProjectCard";
 import { PROJECTS } from "../lib/projects";
 import ComingSoonProjectCard from "./ComingSoonProjectCard";
+import AnimatedSection from "./AnimatedSection";
+import { StaggerCard, StaggerGrid } from "./StaggerGrid";
 
 export default function Projects() {
   return (
-    <section
+    <AnimatedSection
       id="projects"
       aria-labelledby="projects-heading"
       className="scroll-mt-20 border-b border-zinc-900 px-5 py-24 lg:px-8"
@@ -22,7 +24,7 @@ export default function Projects() {
           A look at what I&apos;ve been building. More case studies coming soon.
         </p>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerGrid className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project, index) => (
             <ProjectCard
               key={project.slug}
@@ -32,8 +34,8 @@ export default function Projects() {
             />
           ))}
           <ComingSoonProjectCard />
-        </div>
+        </StaggerGrid>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }
