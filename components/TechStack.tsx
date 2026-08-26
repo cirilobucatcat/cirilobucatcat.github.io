@@ -37,6 +37,7 @@ const STACK: StackCategory[] = [
     {
         label: "Frontend",
         items: [
+            { name: "Vue.js", icon: Atom },
             { name: "React", icon: Atom },
             { name: "Next.js", icon: Component },
             { name: "Tailwind CSS", icon: Palette },
@@ -46,7 +47,9 @@ const STACK: StackCategory[] = [
         label: "Backend & data",
         items: [
             { name: "Node.js", icon: Server },
+            { name: "Laravel", icon: Server },
             { name: "PostgreSQL", icon: Database },
+            { name: "MySQL", icon: Database },
             { name: "REST APIs", icon: Globe },
         ],
     },

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { MenuIcon, CloseIcon } from "./icons";
 
 const NAV_ITEMS = [
-    { href: "/#hero", label: "Hero" },
     { href: "/#projects", label: "Projects" },
     { href: "/#stack", label: "Stack" },
     { href: "/#services", label: "Services" },
