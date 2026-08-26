@@ -18,18 +18,18 @@ export type Project = {
 export const PROJECTS: Project[] = [
     {
         slug: "weakchat",
-        name: "WeakChat",
+        name: "WeakChat: Building a Chat App That Doesn't Lie to Its Users",
         description:
-            "A real-time messaging app built to stay fast and simple — instant delivery, clean threads, and an interface that gets out of the way.",
+            "A case study on designing a lightweight, offline-first, end-to-end encrypted messenger from scratch.",
         summary:
-            "WeakChat is a real-time messaging app focused on speed and clarity over feature bloat. Messages sync instantly across devices, threads stay readable even in busy group chats, and the whole interface is built to disappear so people can focus on the conversation, not the app.",
+            "WeakChat is an offline-first, end-to-end encrypted chat app for web and mobile, built as a Progressive Web App with React and Firebase.",
         tags: ["Real-time", "Chat", "Full-stack"],
-        stack: ["Next.js", "TypeScript", "Firebase", "PWA"],
+        stack: ["React 19", "TypeScript", "Firebase (Auth and Firestore", "PWA", "Vite", "TailwindCSS", "Web Crypto API"],
         features: [
-            "Instant message delivery with optimistic UI updates",
-            "Threaded replies that stay readable in busy channels",
-            "Presence indicators showing who's online and typing",
-            "Responsive layout that works from phone to widescreen",
+            "End-to-end encrypted 1:1 conversations by default — no opt-in toggle, no plaintext fallback",
+            "Offline-First & PWA: Installable on desktop and mobile",
+            "Multi-Device Support: Link a new device to an existing account with a short, human-typeable session code",
+            "Responsive layout spanning phone to laptop widths from a single codebase"
         ],
         role: "Solo developer",
         year: "2026",
