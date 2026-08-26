@@ -27,13 +27,15 @@ export default function ContactForm() {
 
         setStatus("submitting");
         try {
-            const response = await fetch("/api/contact", {
+            
+            const res = await fetch("/api/send-email", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, message }),
             });
 
-            if (!response.ok) throw new Error("Request failed");
+            const data = await res.json();
+            if (!data.success) throw new Error("Request failed");
 
             setStatus("success");
             form.reset();

@@ -41,7 +41,7 @@ export default function EditorGutter() {
                         <li key={id} className="relative">
                             <span
                                 aria-hidden="true"
-                                className={`absolute -left-6 top-1 h-2 w-2 rounded-full transition-colors ${isActive ? "bg-cyan-400" : "bg-zinc-700"
+                                className={`absolute -left-6 top-2.5 h-2 w-2 rounded-full transition-colors ${isActive ? "bg-cyan-400" : "bg-zinc-700"
                                     }`}
                             />
                             <a

@@ -5,10 +5,6 @@
   color-scheme: dark;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   @apply bg-zinc-950 font-sans text-zinc-300 antialiased;
 }
