@@ -10,10 +10,13 @@ export type Project = {
     year: string;
     liveUrl?: string;
     repoUrl?: string;
-    image: string;
+    image: StaticImageData;
     imageAlt: string;
     gallery: { src: string; alt: string }[];
 };
+
+import weakChatMain from '@/public/weakchat/main.png'
+import { StaticImageData } from 'next/image';
 
 export const PROJECTS: Project[] = [
     {
@@ -24,7 +27,7 @@ export const PROJECTS: Project[] = [
         summary:
             "WeakChat is an offline-first, end-to-end encrypted chat app for web and mobile, built as a Progressive Web App with React and Firebase.",
         tags: ["Real-time", "Chat", "Full-stack"],
-        stack: ["React 19", "TypeScript", "Firebase (Auth and Firestore", "PWA", "Vite", "TailwindCSS", "Web Crypto API"],
+        stack: ["React 19", "TypeScript", "Firebase", "PWA", "Vite", "TailwindCSS", "Web Crypto API"],
         features: [
             "End-to-end encrypted 1:1 conversations by default — no opt-in toggle, no plaintext fallback",
             "Offline-First & PWA: Installable on desktop and mobile",
@@ -33,9 +36,9 @@ export const PROJECTS: Project[] = [
         ],
         role: "Solo developer",
         year: "2026",
-        liveUrl: "#",
-        repoUrl: "#",
-        image: "https://placehold.co/640x400/18181b/22d3ee?text=WeakChat",
+        liveUrl: "https://offline-first-chat.vercel.app/",
+        repoUrl: "https://github.com/cirilobucatcat/offline-first-chat",
+        image: weakChatMain,
         imageAlt: "Preview of the WeakChat interface",
         gallery: [
             { src: "https://placehold.co/800x500/18181b/71717a?text=Conversation+view", alt: "WeakChat conversation view" },

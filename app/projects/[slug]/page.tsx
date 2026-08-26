@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
         openGraph: {
             title: `${project.name} — Cirilo Bucatcat Jr.`,
             description: project.description,
-            images: [{ url: project.image }],
+            images: [{ url: project.image.src }],
         },
     };
 }
