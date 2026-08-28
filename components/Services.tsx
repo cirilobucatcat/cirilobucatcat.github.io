@@ -30,6 +30,9 @@ export default function Services() {
                 <h2 id="services-heading" className="mt-3 font-mono text-4xl font-bold text-zinc-100 sm:text-5xl">
                     What I can help with
                 </h2>
+                <p className="mt-4 max-w-2xl font-sans text-zinc-400">
+                    Here is the tech stack I have used throughout my career.
+                </p>
 
                 <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {SERVICES.map(({ icon: Icon, title, description }) => (

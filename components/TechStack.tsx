@@ -1,23 +1,39 @@
 import {
-    Braces,
-    Layers,
-    Terminal,
-    Atom,
-    Component,
-    Palette,
-    Server,
-    Database,
-    Globe,
-    GitBranch,
-    Container,
-    type LucideIcon,
-    Brush,
-} from "lucide-react";
+    JavaScriptIcon,
+    TypeScriptIcon,
+    PythonIcon,
+    VueIcon,
+    ReactIcon,
+    NextJsIcon,
+    TailwindCssIcon,
+    NodeJsIcon,
+    LaravelIcon,
+    PostgreSqlIcon,
+    MySqlIcon,
+    ApiIcon,
+    GitIcon,
+    DockerIcon,
+    FigmaIcon,
+    type IconProps,
+    AngularIcon,
+    MongoDbIcon,
+    NpmIcon,
+    PhpIcon,
+    ComposerIcon,
+    LinuxIcon,
+    ApacheIcon,
+    NginxIcon,
+    JiraIcon,
+    BitbucketIcon,
+    DigitalOceanIcon,
+    FirebaseIcon,
+} from "./icons";
 import SectionEyebrow from "./SectionEyebrow";
+import type { ComponentType } from "react";
 
 type StackItem = {
     name: string;
-    icon: LucideIcon;
+    Icon: ComponentType<IconProps>;
 };
 
 type StackCategory = {
@@ -29,36 +45,48 @@ const STACK: StackCategory[] = [
     {
         label: "Languages",
         items: [
-            { name: "JavaScript", icon: Braces },
-            { name: "TypeScript", icon: Layers },
-            { name: "Python", icon: Terminal },
+            { name: "JavaScript", Icon: JavaScriptIcon },
+            { name: "TypeScript", Icon: TypeScriptIcon },
+            { name: "Python", Icon: PythonIcon },
+            { name: "PHP", Icon: PhpIcon },
         ],
     },
     {
         label: "Frontend",
         items: [
-            { name: "Vue.js", icon: Atom },
-            { name: "React", icon: Atom },
-            { name: "Next.js", icon: Component },
-            { name: "Tailwind CSS", icon: Palette },
+            { name: "Vue.js", Icon: VueIcon },
+            { name: "React", Icon: ReactIcon },
+            { name: "Angular", Icon: AngularIcon },
+            { name: "Next.js", Icon: NextJsIcon },
+            { name: "Tailwind CSS", Icon: TailwindCssIcon },
         ],
     },
     {
-        label: "Backend & data",
+        label: "Backend & Database",
         items: [
-            { name: "Node.js", icon: Server },
-            { name: "Laravel", icon: Server },
-            { name: "PostgreSQL", icon: Database },
-            { name: "MySQL", icon: Database },
-            { name: "REST APIs", icon: Globe },
+            { name: "Node.js", Icon: NodeJsIcon },
+            { name: "Laravel", Icon: LaravelIcon },
+            { name: "PostgreSQL", Icon: PostgreSqlIcon },
+            { name: "MySQL", Icon: MySqlIcon },
+            { name: "MongoDB", Icon: MongoDbIcon },
+            { name: "Firebase", Icon: FirebaseIcon },
+            { name: "REST APIs", Icon: ApiIcon },
         ],
     },
     {
         label: "Tooling",
         items: [
-            { name: "Git", icon: GitBranch },
-            { name: "Docker", icon: Container },
-            { name: "Figma", icon: Brush },
+            { name: "Git", Icon: GitIcon },
+            { name: "Docker", Icon: DockerIcon },
+            { name: "Figma", Icon: FigmaIcon },
+            { name: "Node Package Manager", Icon: NpmIcon },
+            { name: "Composer", Icon: ComposerIcon },
+            { name: "Apache", Icon: ApacheIcon },
+            { name: "Nginx", Icon: NginxIcon },
+            { name: "Linux", Icon: LinuxIcon },
+            { name: "Jira", Icon: JiraIcon },
+            { name: "Bitbucket", Icon: BitbucketIcon },
+            { name: "Digital Ocean", Icon: DigitalOceanIcon },
         ],
     },
 ];
@@ -72,7 +100,7 @@ export default function TechStack() {
                     Tools I build with
                 </h2>
                 <p className="mt-4 max-w-2xl font-sans text-zinc-400">
-                    Update this list to match what you actually use day to day.
+                    Here is the tech stack I have used throughout my career.
                 </p>
 
                 <div className="mt-14 space-y-10">
@@ -80,7 +108,7 @@ export default function TechStack() {
                         <div key={category.label}>
                             <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-600">{category.label}</h3>
                             <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                                {category.items.map(({ name, icon: Icon }) => (
+                                {category.items.map(({ name, Icon }) => (
                                     <li
                                         key={name}
                                         className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 px-4 py-3 transition-colors hover:border-cyan-400/40"
@@ -89,7 +117,7 @@ export default function TechStack() {
                                             aria-hidden="true"
                                             className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-zinc-800 text-cyan-400 transition-colors group-hover:border-cyan-400/40"
                                         >
-                                            <Icon className="h-4 w-4" strokeWidth={1.75} />
+                                            <Icon className="h-4 w-4" />
                                         </span>
                                         <span className="font-sans text-sm text-zinc-300">{name}</span>
                                     </li>
