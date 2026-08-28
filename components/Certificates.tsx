@@ -7,7 +7,7 @@ const CERTIFICATES = [
     description:
       "Certified training covering digital marketing strategy, channels, and analytics.",
     year: "2026",
-    link: "https://www.credly.com/badges/7b6d5d11-30fd-494c-b0e2-291aab5c306f/public_url?trk=public_profile_see-credential",
+    link: "https://www.credly.com/badges/7b6d5d11-30fd-494c-b0e2-291aab5c306f/public_url",
   },
   {
     title: "Google Cybersecurity Professional Certificate(v.2)",
