@@ -3,18 +3,18 @@ import SectionEyebrow from "./SectionEyebrow";
 
 const CERTIFICATES = [
   {
-    title: "Google Digital Marketing and E-commerce",
+    title: "Google Digital Marketing & E-commerce Professional Certificate(v.2)",
     description:
       "Certified training covering digital marketing strategy, channels, and analytics.",
-    year: "2023",
-    link: "https://www.credly.com/badges/your-badge-id-here",
+    year: "2026",
+    link: "https://www.credly.com/badges/7b6d5d11-30fd-494c-b0e2-291aab5c306f/public_url?trk=public_profile_see-credential",
   },
   {
     title: "Google Cybersecurity",
     description:
       "Certified training covering core cybersecurity principles and best practices.",
     year: "2024",
-    link: "https://www.credly.com/badges/your-badge-id-here",
+    link: "https://www.credly.com/badges/1be80ef6-ea03-47fc-b5f5-d105242903d3/public_url",
   },
 ];
 
@@ -33,6 +33,10 @@ export default function Certificates() {
         >
           Certifications
         </h2>
+
+        <p className="mt-4 max-w-2xl font-sans text-zinc-400">
+          Verified credentials, specialized training, and continuous technical learning.
+        </p>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {CERTIFICATES.map((cert) => (

@@ -31,7 +31,7 @@ export default function Services() {
                     What I can help with
                 </h2>
                 <p className="mt-4 max-w-2xl font-sans text-zinc-400">
-                    Here is the tech stack I have used throughout my career.
+                    Services, technologies, and technical solutions I offer.
                 </p>
 
                 <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
