@@ -10,10 +10,10 @@ const CERTIFICATES = [
     link: "https://www.credly.com/badges/7b6d5d11-30fd-494c-b0e2-291aab5c306f/public_url?trk=public_profile_see-credential",
   },
   {
-    title: "Google Cybersecurity",
+    title: "Google Cybersecurity Professional Certificate(v.2)",
     description:
       "Certified training covering core cybersecurity principles and best practices.",
-    year: "2024",
+    year: "2026",
     link: "https://www.credly.com/badges/1be80ef6-ea03-47fc-b5f5-d105242903d3/public_url",
   },
 ];
