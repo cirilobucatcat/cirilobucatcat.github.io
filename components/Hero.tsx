@@ -37,8 +37,8 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-wrap gap-3.5">
-                        <Button href="#projects" arrow>
-                            view projects
+                        <Button target="_blank" href="https://drive.google.com/file/d/1ZgKPq9OZ05U5VAY5AWhZps49j0_KAz64/view?usp=drive_link" arrow>
+                            download resume
                         </Button>
                         <Button href="#ai" variant="ghost">
                             how I build with AI
