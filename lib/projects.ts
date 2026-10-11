@@ -40,10 +40,7 @@ export const PROJECTS: Project[] = [
         repoUrl: "https://github.com/cirilobucatcat/offline-first-chat",
         image: weakChatMain,
         imageAlt: "Preview of the WeakChat interface",
-        gallery: [
-            { src: "https://placehold.co/800x500/18181b/71717a?text=Conversation+view", alt: "WeakChat conversation view" },
-            { src: "https://placehold.co/800x500/18181b/71717a?text=Mobile+layout", alt: "WeakChat mobile layout" },
-        ],
+        gallery: [],
     },
 ];
 

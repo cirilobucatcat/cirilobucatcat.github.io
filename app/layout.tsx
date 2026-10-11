@@ -1,47 +1,59 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { SITE } from "../lib/site";
 import "./globals.css";
 
-const plexMono = IBM_Plex_Mono({
+// Terminal Blueprint uses one family, in three weights.
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-mono",
+  weight: ["400", "500", "700"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const siteUrl = "https://cirilobucatcat.github.io";
+const socialImage = {
+  url: SITE.ogImage,
+  width: 1200,
+  height: 630,
+  alt: SITE.title,
+};
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE.url),
   title: {
-    default: "Cirilo Bucatcat Jr. — Web Developer & Software Engineer",
-    template: "%s — Cirilo Bucatcat Jr.",
+    default: SITE.title,
+    template: `%s — ${SITE.name}`,
   },
-  description:
-    "Portfolio of Cirilo Bucatcat Jr. — Web Developer, Software Developer, and Software Engineer building fast, accessible web and software products.",
-  keywords: ["Cirilo Bucatcat Jr.", "Web Developer", "Software Developer", "Software Engineer", "Portfolio"],
-  authors: [{ name: "Cirilo Bucatcat Jr." }],
-  creator: "Cirilo Bucatcat Jr.",
+  description: SITE.description,
+  keywords: [
+    SITE.name,
+    "Full-stack Web Developer",
+    "Web Developer",
+    "Software Engineer",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Laravel",
+    "Portfolio",
+  ],
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
   openGraph: {
     type: "website",
-    url: siteUrl,
-    title: "Cirilo Bucatcat Jr. — Web Developer & Software Engineer",
-    description: "Portfolio of Cirilo Bucatcat Jr. — Web Developer, Software Developer, and Software Engineer.",
-    siteName: "Cirilo Bucatcat Jr.",
+    locale: "en_US",
+    url: "/",
+    siteName: SITE.name,
+    title: SITE.title,
+    description: SITE.description,
+    images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cirilo Bucatcat Jr. — Web Developer & Software Engineer",
-    description: "Portfolio of Cirilo Bucatcat Jr. — Web Developer, Software Developer, and Software Engineer.",
+    title: SITE.title,
+    description: SITE.description,
+    images: [socialImage],
   },
   robots: {
     index: true,
@@ -50,38 +62,25 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#09090b",
+  themeColor: "#050e1f",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Cirilo Bucatcat Jr.",
-  url: siteUrl,
-  jobTitle: ["Web Developer", "Software Developer", "Software Engineer"],
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Leyte Normal University",
-  },
-  knowsAbout: ["JavaScript", "TypeScript", "Python", "React", "Next.js", "Tailwind CSS", "Node.js", "PostgreSQL", "Docker"],
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plexMono.variable} ${plexSans.variable}`}>
-      <body className="bg-zinc-950 font-sans text-zinc-300">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+    // data-scroll-behavior keeps route changes instant while in-page links scroll smoothly.
+    <html lang="en" className={jetbrainsMono.variable} data-scroll-behavior="smooth">
+      <body>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <Header />
-        {children}
-        <Footer />
+        <div id="top" className="tb-grid site-page">
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

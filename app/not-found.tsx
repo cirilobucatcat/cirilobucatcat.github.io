@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Button, Prompt, TerminalWindow } from "../components/blueprint";
 
 export const metadata = {
     title: "Page not found",
@@ -6,19 +6,21 @@ export const metadata = {
 
 export default function NotFound() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center px-5 text-center">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-600">{"// 404"}</p>
-            <h1 className="mt-8 font-mono text-4xl font-bold text-zinc-100 sm:text-5xl">Nothing here</h1>
-            <p className="mt-4 max-w-sm font-sans text-zinc-400">
-                The page you&apos;re looking for doesn&apos;t exist, or it moved.
+        <main id="main-content" className="site-container flex flex-1 flex-col items-start justify-center gap-6 py-(--space-section)">
+            <p className="tb-section-tag">
+                <span aria-hidden="true">[404] </span>Not found
             </p>
+            <h1 className="tb-section-title">Nothing here</h1>
+            <p className="max-w-125 text-body-lg text-ink-secondary">The page you&apos;re looking for doesn&apos;t exist, or it moved.</p>
 
-            <Link
-                href="/"
-                className="mt-8 inline-flex items-center gap-2 rounded bg-cyan-400 px-5 py-3 font-mono text-sm font-semibold text-zinc-950 transition-transform hover:-translate-y-0.5"
-            >
-                Back to home
-            </Link>
+            <TerminalWindow bar={false} className="w-full max-w-135" bodyClassName="px-6 py-5">
+                <Prompt command="cd ./this-page" />
+                <p className="text-ink-secondary">cd: no such file or directory</p>
+            </TerminalWindow>
+
+            <Button href="/" arrow>
+                back to home
+            </Button>
         </main>
     );
 }

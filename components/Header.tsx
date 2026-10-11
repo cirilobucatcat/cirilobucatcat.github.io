@@ -2,15 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MenuIcon, CloseIcon } from "./icons";
-
-const NAV_ITEMS = [
-    { href: "/#projects", label: "Projects" },
-    { href: "/#stack", label: "Stack" },
-    { href: "/#services", label: "Services" },
-    { href: "/#certificates", label: "Certificates" },
-    { href: "/#contact", label: "Contact" },
-];
+import { Caret, cx } from "./blueprint";
+import { NAV_ITEMS, SITE } from "../lib/site";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
@@ -31,45 +24,53 @@ export default function Header() {
     }, [open]);
 
     return (
-        <header className="fixed inset-x-0 top-0 z-50 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur">
-            <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:px-8">
-                <Link href="/" className="font-mono text-sm font-semibold tracking-tight text-zinc-100" onClick={() => setOpen(false)}>
-                    Cirilo Bucatcat Jr.
+        <header className="tb-nav">
+            <nav aria-label="Main" className="tb-nav-inner">
+                <Link href="/" className="tb-nav-brand" onClick={() => setOpen(false)}>
+                    <span className="tb-nav-tilde" aria-hidden="true">
+                        ~/
+                    </span>
+                    <span>{SITE.handle}</span>
+                    <span className="sr-only">, home</span>
+                    <span className="tb-nav-prompt" aria-hidden="true">
+                        $
+                    </span>
+                    <Caret />
                 </Link>
-
-                <nav aria-label="Primary" className="hidden lg:block">
-                    <ul className="flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-zinc-500">
-                        {NAV_ITEMS.map((item) => (
-                            <li key={item.href}>
-                                <Link href={item.href} className="transition-colors hover:text-cyan-400">
-                                    {item.label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
 
                 <button
                     type="button"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded border border-zinc-800 text-zinc-300 lg:hidden"
+                    className="tb-btn tb-btn-ghost tb-btn-sm lg:hidden"
                     aria-expanded={open}
-                    aria-controls="mobile-nav"
-                    aria-label={open ? "Close menu" : "Open menu"}
+                    aria-controls="nav-links"
                     onClick={() => setOpen((v) => !v)}
                 >
-                    {open ? <CloseIcon className="h-4 w-4" /> : <MenuIcon className="h-4 w-4" />}
+                    {open ? "close" : "menu"}
                 </button>
-            </div>
 
-            <nav id="mobile-nav" aria-label="Mobile" className={`border-t border-zinc-900 bg-zinc-950 lg:hidden ${open ? "block" : "hidden"}`}>
-                <ul className="flex flex-col px-5 py-4 font-mono text-sm uppercase tracking-widest text-zinc-400">
+                <ul
+                    id="nav-links"
+                    className={cx(
+                        "basis-full flex-col border-t border-line-rule pt-2 pb-3",
+                        "lg:flex lg:basis-auto lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-0.5 lg:border-t-0 lg:p-0",
+                        open ? "flex" : "hidden",
+                    )}
+                >
                     {NAV_ITEMS.map((item) => (
-                        <li key={item.href} className="border-b border-zinc-900 last:border-0">
-                            <Link href={item.href} className="block py-3 hover:text-cyan-400" onClick={() => setOpen(false)}>
+                        <li key={item.href}>
+                            <Link href={item.href} className="tb-nav-link block max-lg:px-0" onClick={() => setOpen(false)}>
+                                <span className="tb-nav-num" aria-hidden="true">
+                                    {item.num}
+                                </span>{" "}
                                 {item.label}
                             </Link>
                         </li>
                     ))}
+                    <li className="max-lg:mt-2">
+                        <Link href="/#contact" className="tb-btn tb-btn-ghost tb-btn-sm tb-nav-cta max-lg:ml-0" onClick={() => setOpen(false)}>
+                            ./contact
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>

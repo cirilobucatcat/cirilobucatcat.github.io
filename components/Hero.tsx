@@ -1,136 +1,87 @@
-"use client";
+import { Button, Caret, LayerStack, Prompt, SpecCard, SpecRow, StatusBadge, type Layer } from "./blueprint";
+import { SHEET_TOTAL, SITE } from "../lib/site";
 
-import Link from "next/link";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ArrowRightIcon, ChevronDownIcon } from "./icons";
+const LAYERS: Layer[] = [
+    { index: "01", label: "Client", title: "Interface", meta: "React · Next.js · Vue" },
+    { index: "02", label: "API", title: "Services", meta: "Node.js · Laravel" },
+    { index: "03", label: "AI layer", title: "Intelligence", meta: "LLM APIs · Agents", active: true },
+    { index: "04", label: "Data", title: "Storage", meta: "PostgreSQL · MySQL · Firebase · Supabase" },
+];
 
-const ROLES = ["Web Developer", "Software Developer", "Software Engineer"];
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const STACK_STRIP = "javascript · typescript · python · php · react · next.js · vue · node.js · laravel · postgresql · docker";
 
 export default function Hero() {
-    const reduceMotion = useReducedMotion();
-
-    const container: Variants = {
-        hidden: {},
-        visible: {
-            transition: {
-                staggerChildren: reduceMotion ? 0 : 0.14,
-                delayChildren: reduceMotion ? 0 : 0.15,
-            },
-        },
-    };
-
-    const item: Variants = {
-        hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: reduceMotion ? 0 : 0.6, ease: EASE },
-        },
-    };
-
-    const roleLine: Variants = {
-        hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: reduceMotion ? 0 : 0.4,
-                ease: EASE,
-                staggerChildren: reduceMotion ? 0 : 0.12,
-                delayChildren: 0.05,
-            },
-        },
-    };
-
-    const roleWord: Variants = {
-        hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 6 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: reduceMotion ? 0 : 0.3, ease: "easeOut" },
-        },
-    };
-
     return (
-        <section
-            id="hero"
-            aria-label="Introduction"
-            className="relative flex min-h-screen scroll-mt-20 flex-col justify-center overflow-hidden border-b border-zinc-900 px-5 pt-24 lg:px-8"
-        >
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] [background-size:48px_48px] [mask-image:radial-gradient(ellipse_55%_55%_at_50%_25%,black,transparent_80%)]"
-            />
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute left-1/2 top-[28%] h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-[110px]"
-            />
+        <section aria-labelledby="hero-heading" className="site-hero">
+            <div aria-hidden="true" className="site-glow -top-40 left-[62%] -ml-95 h-140 w-190" />
 
-            <motion.div
-                variants={container}
-                initial="hidden"
-                animate="visible"
-                className="relative mx-auto w-full max-w-6xl"
-            >
-                <motion.p
-                    variants={item}
-                    className="mb-6 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-zinc-500"
-                >
-                    <span className="relative flex h-2 w-2" aria-hidden="true">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400/60 motion-reduce:animate-none" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
-                    </span>
-                    Available for new projects
-                </motion.p>
+            <div className="site-container relative flex flex-wrap items-center gap-x-12 gap-y-14 pt-20 pb-18">
+                <div className="flex min-w-0 flex-[1_1_520px] flex-col items-start gap-6.5">
+                    <StatusBadge>Status: available for new projects</StatusBadge>
+                    <Prompt command="whoami && ./build --with-ai" typed />
 
-                <motion.h1
-                    variants={item}
-                    className="font-mono text-5xl font-bold leading-[0.95] tracking-tight text-zinc-100 sm:text-4xl lg:text-6xl"
-                >
-                    <span aria-hidden="true">
-                        Cirilo Bucatcat Jr.
-                    </span>
-                    <span className="sr-only">Cirilo Bucatcat Jr.</span>
-                </motion.h1>
+                    <h1 id="hero-heading" className="flex flex-col gap-6.5">
+                        <span className="type-display-lg">
+                            I build full-stack web apps that <span className="text-amber">ship</span>
+                            <Caret tone="signal" />
+                        </span>{" "}
+                        <span className="text-body font-normal text-ink-muted">
+                            <span aria-hidden="true">{"// "}</span>
+                            {SITE.role} · <span className="whitespace-nowrap">{SITE.name}</span>
+                        </span>
+                    </h1>
 
-                <motion.div
-                    variants={roleLine}
-                    className="mt-6 max-w-2xl font-mono text-sm text-zinc-500 sm:text-base"
-                >
-                    <span className="text-zinc-300">Full-stack Web Developer </span>
-                </motion.div>
-                <motion.p
-                    variants={item}
-                    className="mt-8 max-w-xl font-sans text-base leading-relaxed text-zinc-400 sm:text-lg"
-                >
-                    I plan, develop, and leverage AI capabilities to create scalable, end-to-end applications. Focused on delivering intelligent, production-ready systems that solve real problems.
-                </motion.p>
+                    <p className="max-w-140 text-body-lg text-ink-secondary">
+                        I plan, build, and ship end-to-end web applications, using AI to move faster. Focused on production-ready systems
+                        that solve real problems.
+                    </p>
 
-                <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-                    <Link
-                        href="#projects"
-                        className="group inline-flex items-center gap-2 rounded bg-cyan-400 px-5 py-3 font-mono text-sm font-semibold text-zinc-950 transition-transform hover:-translate-y-0.5 active:scale-[0.97]"
+                    <div className="flex flex-wrap gap-3.5">
+                        <Button href="#projects" arrow>
+                            view projects
+                        </Button>
+                        <Button href="#ai" variant="ghost">
+                            how I build with AI
+                        </Button>
+                    </div>
+
+                    <SpecCard as="dl" lift={false} surface="window" className="w-full max-w-130 px-4.5 py-1.5">
+                        <SpecRow label="Role">{SITE.role}</SpecRow>
+                        <SpecRow label="Focus">Web apps · APIs · AI features</SpecRow>
+                        <SpecRow label="Stack">React · Next.js · Node.js · Laravel</SpecRow>
+                    </SpecCard>
+                </div>
+
+                <SpecCard
+                    as="figure"
+                    surface="window"
+                    className="flex max-w-135 min-w-0 flex-[1_1_400px] flex-col border-line-chip p-5 shadow-(--shadow-window)"
+                >
+                    <figcaption className="flex flex-wrap justify-between gap-x-3 gap-y-1.5 border-b border-line-dash pb-3.5 text-label tracking-[0.06em] uppercase">
+                        <span>
+                            <span className="text-amber">Fig. 01</span> <span className="text-ink-muted">· System overview</span>
+                        </span>
+                        <span className="text-ink-muted" aria-hidden="true">
+                            Rev 02
+                        </span>
+                    </figcaption>
+                    <LayerStack layers={LAYERS} className="pt-4.5 pb-3.5" />
+                    <p
+                        aria-hidden="true"
+                        className="flex flex-wrap justify-between gap-x-3 gap-y-1.5 border-t border-line-dash pt-3.5 text-caption tracking-[0.06em] text-ink-muted uppercase"
                     >
-                        View projects
-                        <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                    <Link
-                        href="#contact"
-                        className="inline-flex items-center gap-2 rounded border border-zinc-700 px-5 py-3 font-mono text-sm font-semibold text-zinc-300 transition-colors hover:border-cyan-400 hover:text-cyan-400 active:scale-[0.97]"
-                    >
-                        Get in touch
-                    </Link>
-                </motion.div>
-            </motion.div>
+                        <span>Drawn by: {SITE.name}</span>
+                        <span>Sheet 01 / {SHEET_TOTAL}</span>
+                    </p>
+                </SpecCard>
+            </div>
 
-            <Link
-                href="#projects"
-                aria-label="Scroll to projects section"
-                className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-zinc-600 transition-colors hover:text-cyan-400 lg:block"
-            >
-                <ChevronDownIcon className="h-6 w-6 animate-bounce motion-reduce:animate-none" />
-            </Link>
+            <div className="border-t border-dashed border-line-dash bg-surface-inset">
+                <p className="site-container flex flex-wrap gap-x-3.5 gap-y-1.5 py-4 text-body-sm text-ink-muted">
+                    <span className="text-amber">stack:</span>
+                    <span>{STACK_STRIP}</span>
+                </p>
+            </div>
         </section>
     );
 }

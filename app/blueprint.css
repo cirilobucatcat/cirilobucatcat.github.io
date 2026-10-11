@@ -1,0 +1,204 @@
+/*
+ * Terminal Blueprint components.
+ * Copied from the design system's components/bundle.css; class names and values are the system's.
+ * Left out: the Google Fonts @import (next/font loads JetBrains Mono) and the tb-demo preview helpers.
+ * Site-specific rules belong in globals.css, not here.
+ */
+
+/* ---------- base ---------- */
+body { margin: 0; font-family: var(--font-mono); background: var(--ground); color: var(--ink); line-height: 1.65; }
+.tb-grid { background-color: var(--ground); background-image: linear-gradient(var(--line-faint) 1px, transparent 1px), linear-gradient(90deg, var(--line-faint) 1px, transparent 1px); background-size: var(--grid-pitch) var(--grid-pitch); }
+
+/* ---------- motion ---------- */
+@keyframes tb-blink { 50% { opacity: 0; } }
+@keyframes tb-pulse { 0%, 100% { opacity: .4; } 50% { opacity: 1; } }
+@keyframes tb-type { from { width: 0; } to { width: var(--tb-chars); } }
+.tb-caret { animation: tb-blink 1.05s steps(1) infinite; color: var(--amber); }
+.tb-caret-signal { color: var(--signal); }
+.tb-arrow { display: inline-block; transition: transform .2s ease, color .2s ease; }
+
+/* ---------- focus ---------- */
+.tb-btn:focus-visible, .tb-link:focus-visible, .tb-nav-link:focus-visible, .tb-nav-brand:focus-visible, .tb-row-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* ---------- Button ---------- */
+.tb-btn { display: inline-flex; align-items: center; gap: var(--space-2); box-sizing: border-box; font-family: var(--font-mono); font-size: 14px; line-height: 1.65; padding: 14px 24px; border-radius: var(--radius-sm); border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease; }
+.tb-btn-primary { background: var(--action); border-color: var(--action); color: var(--on-action); font-weight: 500; }
+.tb-btn-primary:hover { box-shadow: var(--shadow-glow); color: var(--on-action); }
+.tb-btn-ghost { background: transparent; border-color: var(--line-strong); color: var(--ink); font-weight: 400; }
+.tb-btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+.tb-btn-sm { font-size: 13px; padding: 11px 16px; }
+.tb-btn:hover .tb-arrow { transform: translateX(4px); }
+
+/* ---------- TextLink ---------- */
+.tb-link { display: inline-flex; align-items: center; gap: 6px; padding: 12px 0; font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--signal); text-decoration: none; transition: color .2s ease; }
+.tb-link:hover { color: var(--signal-hover); }
+.tb-link-quiet { color: var(--ink-secondary); font-weight: 400; }
+.tb-link-quiet:hover { color: var(--ink); }
+.tb-link:hover .tb-arrow { transform: translateX(4px); }
+
+/* ---------- Tag ---------- */
+.tb-tag { display: inline-block; font-size: 11px; line-height: 1.65; letter-spacing: .08em; padding: 3px 10px; text-transform: uppercase; }
+.tb-tag-amber { background: var(--amber); color: var(--on-amber); font-weight: 700; }
+.tb-tag-outline { border: 1px solid var(--line-strong); color: var(--ink-secondary); }
+.tb-tag-head { border: 1px solid var(--amber); color: var(--amber); font-weight: 700; font-size: 12px; letter-spacing: 0; padding: 2px 8px; text-transform: none; }
+
+/* ---------- Chip ---------- */
+.tb-chip { display: inline-block; font-size: 12px; line-height: 1.65; padding: 3px 10px; border: 1px solid var(--line-chip); border-radius: var(--radius-xs); color: var(--ink); }
+.tb-chip-md { font-size: 13px; padding: 5px 12px; }
+.tb-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+/* ---------- StatusBadge ---------- */
+.tb-status { display: inline-flex; align-items: center; gap: 10px; padding: 7px 12px; border: 1px solid var(--line-chip); border-radius: var(--radius-xs); background: var(--surface-window); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-secondary); }
+.tb-status-inline { padding: 0; border: 0; background: transparent; text-transform: none; letter-spacing: 0; font-size: inherit; gap: 8px; }
+.tb-dot { display: inline-block; width: 8px; height: 8px; border-radius: var(--radius-dot); background: var(--signal); box-shadow: var(--glow-signal); flex-shrink: 0; }
+.tb-dot-pulse { animation: tb-pulse 2.4s ease-in-out infinite; }
+
+/* ---------- Prompt ---------- */
+.tb-prompt { font-size: 14px; color: var(--ink); }
+.tb-prompt-muted { color: var(--ink-muted); }
+.tb-prompt-symbol { color: var(--amber); }
+.tb-typed { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; }
+
+/* ---------- TerminalWindow ---------- */
+.tb-window { box-sizing: border-box; border: 1px solid var(--line-chip); border-radius: var(--radius-lg); background: var(--surface-window); box-shadow: var(--shadow-window); overflow: hidden; color: var(--ink); }
+.tb-window-plain { border-radius: var(--radius-md); box-shadow: none; }
+.tb-window-bar { display: flex; align-items: center; gap: var(--space-2); padding: 12px 18px; border-bottom: 1px solid var(--line-rule); }
+.tb-window-dot { width: 10px; height: 10px; border-radius: var(--radius-dot); background: var(--window-dot); }
+.tb-window-dot:nth-child(1) { background: #ff5f57; }
+.tb-window-dot:nth-child(2) { background: #febc2e; }
+.tb-window-dot:nth-child(3) { background: #28c840; }
+.tb-window-title { margin-left: 10px; font-size: 12px; color: var(--ink-muted); }
+.tb-window-body { padding: 18px 20px; font-size: 14px; line-height: 1.9; }
+.tb-check { color: var(--signal); }
+
+/* ---------- TerminalRow ---------- */
+.tb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 12px 10px; margin: 0 -10px; font-size: 14px; line-height: 1.65; color: var(--ink-secondary); text-decoration: none; }
+.tb-row-key { flex: 0 0 90px; color: var(--ink-muted); }
+.tb-row-value { flex: 1 1 200px; min-width: 0; display: inline-flex; align-items: center; gap: 8px; }
+.tb-row-link { transition: background .2s ease, color .2s ease; }
+.tb-row-link .tb-arrow { color: var(--signal); }
+.tb-row-link:hover { background: var(--hover-wash); color: var(--ink); }
+.tb-row-link:hover .tb-arrow { color: var(--amber); transform: translateX(4px); }
+
+/* ---------- RoleLine ---------- */
+.tb-role { display: flex; align-items: flex-start; gap: var(--space-3); }
+.tb-role-badge { flex: 0 0 34px; box-sizing: border-box; text-align: center; font-size: 11px; font-weight: 700; line-height: 1.65; padding: 2px 0; border: 1px solid currentColor; }
+.tb-role-text { font-size: 13px; line-height: 1.65; }
+.tb-role-ai .tb-role-badge { color: var(--amber); }
+.tb-role-ai .tb-role-text { color: var(--ink-secondary); }
+.tb-role-me .tb-role-badge { color: var(--signal); }
+.tb-role-me .tb-role-text { color: var(--ink); }
+
+/* ---------- CommitEntry ---------- */
+.tb-commit { display: flex; gap: 20px; padding: 0 16px 0 8px; transition: background .2s ease; }
+.tb-commit:hover { background: var(--hover-wash); }
+.tb-commit-rail { flex: 0 0 14px; display: flex; flex-direction: column; align-items: center; }
+.tb-commit-stem { width: 2px; background: var(--line-chip); }
+.tb-commit-stem-top { height: 30px; flex: 0 0 30px; }
+.tb-commit-stem-bottom { flex: 1 1 auto; }
+.tb-commit-stem-hidden { visibility: hidden; }
+.tb-commit-node { width: 11px; height: 11px; border-radius: var(--radius-dot); border: 2px solid var(--signal); background: var(--ground); flex-shrink: 0; }
+.tb-commit-is-head .tb-commit-node { background: var(--amber); border-color: var(--amber); box-shadow: var(--glow-amber); }
+.tb-commit-body { flex: 1 1 auto; min-width: 0; padding: 24px 0 36px; display: flex; flex-direction: column; gap: 10px; }
+.tb-commit-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 12px; }
+.tb-commit-hash { color: var(--amber); }
+.tb-commit-dates { color: var(--ink-muted); }
+.tb-commit-title { margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.3; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+.tb-commit-at { color: var(--ink-muted); font-weight: 400; }
+.tb-diff { display: flex; flex-direction: column; gap: 6px; max-width: 760px; font-size: 14px; }
+.tb-diff-line { display: flex; gap: 10px; }
+.tb-diff-sign { color: var(--signal); flex-shrink: 0; }
+.tb-diff-text { color: var(--ink-secondary); }
+
+/* ---------- SectionHeader ---------- */
+.tb-section-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; padding-bottom: 22px; border-bottom: 1px solid var(--line-rule); }
+.tb-section-main { display: flex; flex-direction: column; gap: 10px; max-width: 700px; }
+.tb-section-tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+.tb-section-title { margin: 0; font-size: clamp(30px, 4.2vw, 48px); line-height: 1.08; font-weight: 700; letter-spacing: -.035em; color: var(--ink); }
+.tb-sheet { font-size: 12px; letter-spacing: .08em; color: var(--ink-muted); }
+
+/* ---------- NavBar ---------- */
+.tb-nav { position: sticky; top: 0; z-index: var(--z-nav); border-bottom: 1px solid var(--line-rule); background: var(--surface-nav); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.tb-nav-static { position: relative; }
+.tb-nav-inner { max-width: var(--container-max); margin: 0 auto; box-sizing: border-box; padding: 8px var(--space-6); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; }
+.tb-nav-brand { display: inline-flex; align-items: center; gap: 2px; padding: 12px 0; font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; }
+.tb-nav-tilde { color: var(--amber); }
+.tb-nav-prompt { color: var(--signal); margin-left: 8px; }
+.tb-nav-brand .tb-caret { margin-left: 4px; }
+.tb-nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 2px; }
+.tb-nav-link { padding: 12px 10px; font-size: 13px; color: var(--ink-secondary); text-decoration: none; transition: color .2s ease; }
+.tb-nav-num { color: var(--ink-muted); transition: color .2s ease; }
+.tb-nav-link:hover, .tb-nav-link:hover .tb-nav-num { color: var(--amber); }
+.tb-nav-cta { margin-left: 8px; }
+
+/* ---------- TitleBlock ---------- */
+.tb-titleblock { display: flex; flex-wrap: wrap; border: 1px solid var(--line-card); }
+.tb-titleblock-cell { flex: 1 1 180px; padding: 12px 16px; border-right: 1px solid var(--line-card); display: flex; flex-direction: column; gap: 2px; }
+.tb-titleblock-cell:last-child { border-right: 0; }
+.tb-titleblock-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); }
+.tb-titleblock-value { font-size: 13px; color: var(--ink); }
+.tb-titleblock-accent { color: var(--amber); }
+
+/* ---------- SpecCard ---------- */
+.tb-spec { position: relative; box-sizing: border-box; border: 1px solid var(--line-card); background: var(--surface); color: var(--ink); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.tb-spec::before { content: ""; position: absolute; top: -1px; left: -1px; width: 14px; height: 14px; border-top: 2px solid var(--amber); border-left: 2px solid var(--amber); pointer-events: none; }
+.tb-spec::after { content: ""; position: absolute; bottom: -1px; right: -1px; width: 14px; height: 14px; border-bottom: 2px solid var(--amber); border-right: 2px solid var(--amber); pointer-events: none; }
+.tb-spec-lift:hover { transform: translateY(-3px); border-color: var(--line-hover); box-shadow: var(--shadow-lift); }
+.tb-spec-amber { border-color: var(--amber); background: var(--amber-wash); }
+.tb-spec-amber.tb-spec-lift:hover { border-color: var(--amber); }
+.tb-spec-pad { padding: var(--space-card); }
+.tb-spec-window { background: var(--surface-window); }
+
+/* ---------- SpecRow ---------- */
+.tb-spec-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--line-dash); font-size: 13px; line-height: 1.65; }
+.tb-spec-row:last-child { border-bottom: 0; }
+.tb-spec-row-key { color: var(--ink-muted); text-transform: uppercase; }
+.tb-spec-row-value { color: var(--ink); text-align: right; }
+
+/* ---------- LeaderRow ---------- */
+.tb-leader { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; font-size: 13px; line-height: 1.65; }
+.tb-leader-name { color: var(--ink); }
+.tb-leader-dots { flex: 1 1 0; min-width: 12px; border-bottom: 1px dotted var(--line-chip); }
+.tb-leader-use { color: var(--ink-muted); }
+.tb-leader-amber .tb-leader-dots { border-bottom-color: var(--amber-line); }
+.tb-leader-amber .tb-leader-use { color: var(--ink-secondary); }
+
+/* ---------- MetricBox ---------- */
+.tb-metric { box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--line-card); background: var(--surface-inset); display: flex; flex-direction: column; gap: 2px; }
+.tb-metric-value { font-size: 22px; line-height: 1.3; font-weight: 700; color: var(--amber); }
+.tb-metric-label { font-size: 12px; color: var(--ink-muted); }
+
+/* ---------- Figure ---------- */
+.tb-figure { position: relative; margin: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; min-height: 200px; overflow: hidden; background-color: var(--surface-figure); background-image: linear-gradient(var(--line-figure) 1px, transparent 1px), linear-gradient(90deg, var(--line-figure) 1px, transparent 1px); background-size: 24px 24px; font-size: 12px; color: var(--ink-muted); }
+.tb-figure-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tb-figure-label { position: absolute; z-index: 1; top: 12px; left: 14px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); }
+.tb-figure-caption { position: relative; }
+
+/* ---------- LayerStack ---------- */
+.tb-layers { display: flex; flex-direction: column; }
+.tb-layer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 14px 16px; border: 1px solid var(--line-strong); background: var(--surface); }
+.tb-layer-head { display: flex; flex-direction: column; }
+.tb-layer-index { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+.tb-layer-title { font-size: 16px; font-weight: 700; color: var(--ink); }
+.tb-layer-meta { font-size: 12px; color: var(--ink-secondary); }
+.tb-layer-active { border-color: var(--amber); background: var(--amber-soft); }
+.tb-layer-active .tb-layer-index { color: var(--amber); }
+.tb-layer-active .tb-layer-meta { color: var(--ink); }
+.tb-layer-link { text-align: center; color: var(--signal); font-size: 14px; line-height: 1; padding: 7px 0; }
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .tb-caret, .tb-dot-pulse, .tb-typed { animation: none !important; }
+  .tb-typed { width: auto !important; }
+  .tb-spec, .tb-btn, .tb-link, .tb-arrow, .tb-commit, .tb-nav-link, .tb-nav-num, .tb-row-link { transition: none; }
+  .tb-spec-lift:hover { transform: none; }
+}
+
+/*
+ * ---------- site adaptations ----------
+ * The bundle assumes content-box sizing; Tailwind's reset makes everything border-box.
+ * These keep the corner marks, timeline node and title-block cells at the system's drawn size.
+ */
+.tb-spec::before, .tb-spec::after, .tb-commit-node, .tb-titleblock-cell { box-sizing: content-box; }
+/* The system's amber label is drawn over the dark figure grid; over a real screenshot it needs a backing. */
+.tb-figure-img ~ .tb-figure-label { top: 0; left: 0; padding: 6px 12px; background: var(--surface-window); border-right: 1px solid var(--line-card); border-bottom: 1px solid var(--line-card); }

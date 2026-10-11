@@ -1,132 +1,119 @@
-import {
-    JavaScriptIcon,
-    TypeScriptIcon,
-    PythonIcon,
-    VueIcon,
-    ReactIcon,
-    NextJsIcon,
-    TailwindCssIcon,
-    NodeJsIcon,
-    LaravelIcon,
-    PostgreSqlIcon,
-    MySqlIcon,
-    ApiIcon,
-    GitIcon,
-    DockerIcon,
-    FigmaIcon,
-    type IconProps,
-    AngularIcon,
-    MongoDbIcon,
-    NpmIcon,
-    PhpIcon,
-    ComposerIcon,
-    LinuxIcon,
-    ApacheIcon,
-    NginxIcon,
-    JiraIcon,
-    BitbucketIcon,
-    DigitalOceanIcon,
-    FirebaseIcon,
-} from "./icons";
-import SectionEyebrow from "./SectionEyebrow";
-import type { ComponentType } from "react";
+import { LeaderRow, SpecCard } from "./blueprint";
+import Section from "./Section";
 
-type StackItem = {
+type Tool = { name: string; use: string };
+
+type Module = {
     name: string;
-    Icon: ComponentType<IconProps>;
+    /** The highlighted module: amber card with a CORE marker. One per group. */
+    core?: boolean;
+    tools: Tool[];
 };
 
-type StackCategory = {
-    label: string;
-    items: StackItem[];
-};
-
-const STACK: StackCategory[] = [
+const MODULES: Module[] = [
     {
-        label: "Languages",
-        items: [
-            { name: "JavaScript", Icon: JavaScriptIcon },
-            { name: "TypeScript", Icon: TypeScriptIcon },
-            { name: "Python", Icon: PythonIcon },
-            { name: "PHP", Icon: PhpIcon },
+        name: "languages",
+        tools: [
+            { name: "JavaScript", use: "web apps" },
+            { name: "TypeScript", use: "type safety" },
+            { name: "Python", use: "scripting" },
+            { name: "PHP", use: "server-side apps" },
         ],
     },
     {
-        label: "Frontend",
-        items: [
-            { name: "Vue.js", Icon: VueIcon },
-            { name: "React", Icon: ReactIcon },
-            { name: "Angular", Icon: AngularIcon },
-            { name: "Next.js", Icon: NextJsIcon },
-            { name: "Tailwind CSS", Icon: TailwindCssIcon },
+        name: "frontend",
+        tools: [
+            { name: "Vue.js", use: "interfaces" },
+            { name: "React", use: "interfaces" },
+            { name: "Angular", use: "large apps" },
+            { name: "Next.js", use: "full stack apps" },
+            { name: "Tailwind CSS", use: "styling" },
         ],
     },
     {
-        label: "Backend & Database",
-        items: [
-            { name: "Node.js", Icon: NodeJsIcon },
-            { name: "Laravel", Icon: LaravelIcon },
-            { name: "PostgreSQL", Icon: PostgreSqlIcon },
-            { name: "MySQL", Icon: MySqlIcon },
-            { name: "MongoDB", Icon: MongoDbIcon },
-            { name: "Firebase", Icon: FirebaseIcon },
-            { name: "REST APIs", Icon: ApiIcon },
+        name: "backend_data",
+        tools: [
+            { name: "Node.js", use: "APIs" },
+            { name: "Laravel", use: "web backends" },
+            { name: "PostgreSQL", use: "relational" },
+            { name: "MySQL", use: "relational" },
+            { name: "MongoDB", use: "documents" },
+            { name: "Firebase", use: "realtime, auth" },
+            { name: "REST APIs", use: "integrations" },
         ],
     },
     {
-        label: "Tooling",
-        items: [
-            { name: "Git", Icon: GitIcon },
-            { name: "Docker", Icon: DockerIcon },
-            { name: "Figma", Icon: FigmaIcon },
-            { name: "Node Package Manager", Icon: NpmIcon },
-            { name: "Composer", Icon: ComposerIcon },
-            { name: "Apache", Icon: ApacheIcon },
-            { name: "Nginx", Icon: NginxIcon },
-            { name: "Linux", Icon: LinuxIcon },
-            { name: "Jira", Icon: JiraIcon },
-            { name: "Bitbucket", Icon: BitbucketIcon },
-            { name: "Digital Ocean", Icon: DigitalOceanIcon },
+        name: "ai",
+        core: true,
+        tools: [
+            { name: "LLM APIs", use: "AI features" },
+            { name: "AI agents", use: "automation" },
+            { name: "AI-assisted dev", use: "speed" },
+        ],
+    },
+    {
+        name: "tooling",
+        tools: [
+            { name: "Git", use: "version control" },
+            { name: "Docker", use: "containers" },
+            { name: "Figma", use: "design handoff" },
+            { name: "npm", use: "JS packages" },
+            { name: "Composer", use: "PHP packages" },
+            { name: "Apache", use: "web server" },
+            { name: "Nginx", use: "web server" },
+            { name: "Linux", use: "servers" },
+            { name: "Jira", use: "planning" },
+            { name: "Bitbucket", use: "repositories" },
+            { name: "DigitalOcean", use: "hosting" },
         ],
     },
 ];
 
+const TOOL_COUNT = MODULES.reduce((total, mod) => total + mod.tools.length, 0);
+
 export default function TechStack() {
     return (
-        <section id="stack" aria-labelledby="stack-heading" className="scroll-mt-20 border-b border-zinc-900 px-5 py-24 lg:px-8">
-            <div className="mx-auto max-w-6xl">
-                <SectionEyebrow index="03" label="Tech Stack" />
-                <h2 id="stack-heading" className="mt-3 font-mono text-4xl font-bold text-zinc-100 sm:text-5xl">
-                    Tools I build with
-                </h2>
-                <p className="mt-4 max-w-2xl font-sans text-zinc-400">
-                    Here is the tech stack I have used throughout my career.
-                </p>
-
-                <div className="mt-14 space-y-10">
-                    {STACK.map((category) => (
-                        <div key={category.label}>
-                            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-600">{category.label}</h3>
-                            <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                                {category.items.map(({ name, Icon }) => (
-                                    <li
-                                        key={name}
-                                        className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 px-4 py-3 transition-colors hover:border-cyan-400/40"
-                                    >
-                                        <span
-                                            aria-hidden="true"
-                                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-zinc-800 text-cyan-400 transition-colors group-hover:border-cyan-400/40"
-                                        >
-                                            <Icon className="h-4 w-4" />
-                                        </span>
-                                        <span className="font-sans text-sm text-zinc-300">{name}</span>
-                                    </li>
+        <Section id="stack" title="The tools I reach for" command="cat stack.json | jq '.modules'">
+            <ul className="flex flex-wrap gap-5">
+                {MODULES.map((mod, i) => (
+                    <li key={mod.name} className="flex min-w-0 flex-[1_1_250px]">
+                        <SpecCard as="article" tone={mod.core ? "amber" : "default"} className="flex w-full flex-col">
+                            <header
+                                className={`flex items-center justify-between gap-3 border-b px-5 py-3.5 ${mod.core ? "border-amber-line" : "border-line-dash"}`}
+                            >
+                                <h3 className="text-body font-bold">
+                                    <span className="text-amber">mod/</span>
+                                    {mod.name}
+                                </h3>
+                                {mod.core ? (
+                                    <span className="text-caption font-bold text-amber">CORE</span>
+                                ) : (
+                                    <span className="text-caption text-ink-muted" aria-hidden="true">
+                                        {String(i + 1).padStart(2, "0")}
+                                    </span>
+                                )}
+                            </header>
+                            {/* One column in a narrow card; a card left alone on its row spreads its tools across several. */}
+                            <dl className="grid grid-cols-[repeat(auto-fill,minmax(min(210px,100%),1fr))] gap-x-10 gap-y-1 px-5 pt-3 pb-4.5">
+                                {mod.tools.map((tool) => (
+                                    <LeaderRow key={tool.name} name={tool.name} use={tool.use} tone={mod.core ? "amber" : "default"} />
                                 ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
+                            </dl>
+                        </SpecCard>
+                    </li>
+                ))}
+            </ul>
+
+            <p className="text-body-sm text-ink-muted">
+                <span className="text-signal" aria-hidden="true">
+                    ✓
+                </span>{" "}
+                {MODULES.length} modules · {TOOL_COUNT} tools loaded{" "}
+                <span className="text-amber" aria-hidden="true">
+                    ·
+                </span>{" "}
+                always learning the next one
+            </p>
+        </Section>
     );
 }

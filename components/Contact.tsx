@@ -1,40 +1,56 @@
-import { MailIcon, ExternalLinkIcon } from "./icons";
-import SectionEyebrow from "./SectionEyebrow";
-import ContactFormLoader from "./ContactFormLoader";
+import { Button, Caret, Prompt, StatusBadge, TerminalRow, TerminalWindow, cx } from "./blueprint";
+import { SITE, sectionMeta } from "../lib/site";
+
+const stripProtocol = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "");
 
 export default function Contact() {
-    return (
-        <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-20 px-5 py-24 lg:px-8">
-            <div className="mx-auto max-w-6xl">
-                <SectionEyebrow index="06" label="Contact" />
-                <h2 id="contact-heading" className="mt-3 font-mono text-4xl font-bold text-zinc-100 sm:text-5xl">
-                    Let&apos;s work together
-                </h2>
-                <p className="mt-4 max-w-xl font-sans text-zinc-400">
-                    Have a project in mind or just want to say hello? Send a message
-                    and I&apos;ll get back to you.
-                </p>
+    const meta = sectionMeta("contact");
 
-                <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-                    <div className="space-y-6">
-                        {/* Replace with your real email and profile links */}
-                        <a href="mailto:bucatcat1999@gmail.com" className="flex items-center gap-3 font-mono text-sm text-zinc-300 hover:text-cyan-400">
-                            <MailIcon className="h-4 w-4" />
-                            bucatcat1999@gmail.com
-                        </a>
-                        <div className="flex flex-col gap-3 font-mono text-sm text-zinc-300">
-                            <a href="https://github.com/cirilobucatcat" className="flex items-center gap-3 hover:text-cyan-400">
-                                <ExternalLinkIcon className="h-4 w-4" />
-                                GitHub
-                            </a>
-                            <a href="https://www.linkedin.com/in/cirilo-bucatcat-jr" className="flex items-center gap-3 hover:text-cyan-400">
-                                <ExternalLinkIcon className="h-4 w-4" />
-                                LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                    <ContactFormLoader />
+    return (
+        <section
+            id="contact"
+            aria-labelledby="contact-heading"
+            className={cx("site-section relative overflow-hidden", meta.band && "site-section-band")}
+        >
+            <div aria-hidden="true" className="site-glow -bottom-55 left-[30%] -ml-102.5 h-110 w-205" />
+
+            <div className="site-container relative flex flex-wrap items-center gap-12 py-28">
+                <div className="flex min-w-0 flex-[1_1_480px] flex-col items-start gap-6">
+                    <p className="tb-section-tag">
+                        <span aria-hidden="true">[{meta.index}] </span>
+                        {meta.label}
+                    </p>
+                    <h2 id="contact-heading" className="type-display-md">
+                        Let&apos;s build something <span className="text-signal">worth shipping</span>
+                        <Caret />
+                    </h2>
+                    <p className="max-w-125 text-body-lg text-ink-secondary">
+                        Have a project in mind or just want to say hello? Send me an email and I&apos;ll get back to you.
+                    </p>
+                    <Button href={`mailto:${SITE.email}`} arrow>
+                        send an email
+                    </Button>
                 </div>
+
+                <TerminalWindow title="contact.sh" className="max-w-135 min-w-0 flex-[1_1_400px]">
+                    <Prompt command="./contact --list" />
+                    <address className="not-italic">
+                        <ul>
+                            <TerminalRow label="email" href={`mailto:${SITE.email}`}>
+                                {SITE.email}
+                            </TerminalRow>
+                            <TerminalRow label="github" href={SITE.github} arrow="↗">
+                                {stripProtocol(SITE.github)}
+                            </TerminalRow>
+                            <TerminalRow label="linkedin" href={SITE.linkedin} arrow="↗">
+                                {stripProtocol(SITE.linkedin)}
+                            </TerminalRow>
+                            <TerminalRow label="status">
+                                <StatusBadge inline>available for new projects</StatusBadge>
+                            </TerminalRow>
+                        </ul>
+                    </address>
+                </TerminalWindow>
             </div>
         </section>
     );

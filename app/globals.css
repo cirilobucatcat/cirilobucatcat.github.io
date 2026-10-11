@@ -1,38 +1,317 @@
 @import "tailwindcss";
-@tailwind utilities;
+@import "./blueprint.css" layer(components);
 
+/* Terminal Blueprint tokens, from the design system's tokens.json (v1). */
 :root {
   color-scheme: dark;
+
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ground: #050e1f;
+  --ground-deep: #040b19;
+  --surface: rgba(8, 21, 40, 0.9);
+  --surface-window: rgba(6, 17, 36, 0.92);
+  --surface-band: rgba(6, 17, 36, 0.85);
+  --surface-inset: rgba(5, 14, 31, 0.7);
+  --surface-figure: #061124;
+  --surface-nav: rgba(5, 14, 31, 0.86);
+  --ink: #dce8ff;
+  --ink-secondary: #b7c6e4;
+  --ink-muted: #8fa3c8;
+  --signal: #4d9bff;
+  --signal-hover: #9cc6ff;
+  --action: #3d8bff;
+  --on-action: #03101f;
+  --amber: #ffb547;
+  --on-amber: #03101f;
+  --amber-soft: rgba(255, 181, 71, 0.07);
+  --amber-wash: rgba(255, 181, 71, 0.05);
+  --amber-line: rgba(255, 181, 71, 0.4);
+  --focus: var(--amber);
+  --line-faint: rgba(77, 155, 255, 0.06);
+  --line-grid: rgba(77, 155, 255, 0.1);
+  --line-figure: rgba(77, 155, 255, 0.12);
+  --line-section: rgba(77, 155, 255, 0.18);
+  --line-rule: rgba(77, 155, 255, 0.22);
+  --line-dash: rgba(77, 155, 255, 0.25);
+  --line-card: rgba(77, 155, 255, 0.28);
+  --line-chip: rgba(77, 155, 255, 0.35);
+  --line-strong: rgba(77, 155, 255, 0.5);
+  --line-hover: rgba(77, 155, 255, 0.6);
+  --hover-wash: rgba(77, 155, 255, 0.06);
+  --window-dot: rgba(143, 163, 200, 0.4);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-card: 22px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-section: 104px;
+
+  --radius-none: 0px;
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-dot: 50%;
+
+  --shadow-window: 0 30px 80px -30px rgba(61, 139, 255, 0.35);
+  --shadow-lift: 0 14px 40px -16px rgba(61, 139, 255, 0.45);
+  --shadow-glow: 0 0 28px rgba(61, 139, 255, 0.55);
+  --glow-signal: 0 0 10px #4d9bff;
+  --glow-amber: 0 0 12px rgba(255, 181, 71, 0.6);
+
+  --container-max: 1200px;
+  --grid-pitch: 40px;
+  --grid-major: 200px;
+  --nav-offset: 64px;
+
+  --z-nav: 20;
 }
 
-body {
-  @apply bg-zinc-950 font-sans text-zinc-300 antialiased;
+/* Expose the tokens to Tailwind for layout markup: bg-ground, text-ink-secondary, text-body-sm, ... */
+@theme inline {
+  --color-ground: var(--ground);
+  --color-ground-deep: var(--ground-deep);
+  --color-surface: var(--surface);
+  --color-surface-window: var(--surface-window);
+  --color-surface-inset: var(--surface-inset);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-signal: var(--signal);
+  --color-amber: var(--amber);
+  --color-on-amber: var(--on-amber);
+  --color-amber-line: var(--amber-line);
+  --color-line-rule: var(--line-rule);
+  --color-line-dash: var(--line-dash);
+  --color-line-card: var(--line-card);
+  --color-line-chip: var(--line-chip);
+
+  --text-body-lg: 16px;
+  --text-body: 14px;
+  --text-body-sm: 13px;
+  --text-label: 12px;
+  --text-caption: 11px;
+  --text-micro: 10px;
 }
 
-::selection {
-  @apply bg-cyan-400/20 text-cyan-200;
-}
-
-:focus-visible {
-  outline: 2px solid #22d3ee;
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-.skip-link {
-  @apply sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-100 focus:rounded focus:bg-cyan-400 focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:font-semibold focus:text-zinc-950;
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer base {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  ::selection {
+    background: var(--amber);
+    color: var(--on-amber);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-sm focus:bg-amber focus:px-4 focus:py-2 focus:text-body focus:font-bold focus:text-on-amber;
+  }
+
+  /* ---------- page layout ---------- */
+  .site-page {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow-x: clip;
+  }
+
+  .site-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .site-section {
+    scroll-margin-top: var(--nav-offset);
+    border-top: 1px solid var(--line-section);
+  }
+
+  .site-section-band {
+    background: var(--surface-band);
+  }
+
+  /* The hero adds the major grid on top of the page grid. */
+  .site-hero {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(var(--line-grid) 1px, transparent 1px), linear-gradient(90deg, var(--line-grid) 1px, transparent 1px);
+    background-size: var(--grid-major) var(--grid-major);
+  }
+
+  .site-glow {
+    position: absolute;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, color-mix(in srgb, var(--action) 18%, transparent), transparent 65%);
+  }
+
+  /* Certificate badge: the one drawn icon in the system, a 52px amber-outlined square. */
+  .site-badge {
+    display: flex;
+    flex: 0 0 52px;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid color-mix(in srgb, var(--amber) 60%, transparent);
+    background: var(--amber-soft);
+    color: var(--amber);
+  }
+
+  /*
+   * Experience timeline: an amber line fills the rail to the reading position as the page scrolls.
+   * TimelineFill sets --timeline-x, --timeline-start and --timeline-fill from the rail's real position,
+   * and marks each circle [data-reached] once the line enters it.
+   */
+  .site-timeline {
+    position: relative;
+  }
+
+  .site-timeline-fill {
+    position: absolute;
+    top: var(--timeline-start, 0px);
+    left: var(--timeline-x, 0px);
+    width: 2px;
+    height: var(--timeline-fill, 0px);
+    background: var(--amber);
+    pointer-events: none;
+  }
+
+  /* Circles sit above the line and fill amber once it enters them. */
+  .site-timeline .tb-commit-node {
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .site-timeline .tb-commit-node[data-reached] {
+    border-color: var(--amber);
+    background: var(--amber);
+  }
+
+  /* Ping: a ring grows out of every amber circle (the current role's, and each one the line has reached). */
+  .site-timeline .tb-commit-node[data-reached]::after,
+  .site-timeline .tb-commit-is-head .tb-commit-node::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius-dot);
+    background: var(--amber);
+    pointer-events: none;
+    animation: site-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes site-ping {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    75%,
+    100% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+
+  /* Title, description and stack slide in from the left, one after another, when their circle fills. */
+  .site-timeline .tb-commit-title,
+  .site-timeline .tb-diff-line,
+  .site-timeline .tb-chips {
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Each highlight line slides in on its own, staggered by its index (--i set on the line). */
+  .site-timeline .tb-diff-line {
+    transition-delay: calc(0.2s + var(--i, 0) * 0.2s);
+  }
+
+  .site-timeline .tb-chips {
+    transition-delay: calc(0.2s + var(--line-count, 0) * 0.2s);
+  }
+
+  /* Scrolling back up, reverse the order: chips go first, then the lines bottom to top, then the title. */
+  .site-timeline[data-enhanced] .tb-commit:not([data-reached]) .tb-chips {
+    transition-delay: 0s;
+  }
+
+  .site-timeline[data-enhanced] .tb-commit:not([data-reached]) .tb-diff-line {
+    transition-delay: calc(0.05s + (var(--line-count, 1) - 1 - var(--i, 0)) * 0.1s);
+  }
+
+  .site-timeline[data-enhanced] .tb-commit:not([data-reached]) .tb-commit-title {
+    transition-delay: calc(0.05s + var(--line-count, 0) * 0.1s);
+  }
+
+  .site-timeline[data-enhanced] .tb-commit:not([data-reached]) :is(.tb-commit-title, .tb-diff-line, .tb-chips) {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-timeline .tb-commit-node::after {
+      display: none;
+    }
+  }
+
+  /* ---------- type styles from tokens.json that the bundle has no class for ---------- */
+  .type-display-lg {
+    font-size: clamp(36px, 5.8vw, 76px);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+  }
+
+  .type-display-md {
+    font-size: clamp(34px, 5.4vw, 66px);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+  }
+
+  .type-heading-feature {
+    font-size: clamp(24px, 2.6vw, 32px);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .type-heading-card {
+    font-size: 22px;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .type-heading-sm {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
   }
 }

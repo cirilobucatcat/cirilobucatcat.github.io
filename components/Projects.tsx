@@ -1,41 +1,36 @@
-import SectionEyebrow from "./SectionEyebrow";
+import FeaturedProject from "./FeaturedProject";
 import ProjectCard from "./ProjectCard";
+import Section from "./Section";
 import { PROJECTS } from "../lib/projects";
-import ComingSoonProjectCard from "./ComingSoonProjectCard";
-import AnimatedSection from "./AnimatedSection";
-import { StaggerCard, StaggerGrid } from "./StaggerGrid";
 
 export default function Projects() {
-  return (
-    <AnimatedSection
-      id="projects"
-      aria-labelledby="projects-heading"
-      className="scroll-mt-20 border-b border-zinc-900 px-5 py-24 lg:px-8"
-    >
-      <div className="mx-auto max-w-6xl">
-        <SectionEyebrow index="02" label="Projects" />
-        <h2
-          id="projects-heading"
-          className="mt-3 font-mono text-4xl font-bold text-zinc-100 sm:text-5xl"
-        >
-          Selected work
-        </h2>
-        <p className="mt-4 max-w-2xl font-sans text-zinc-400">
-          A look at what I&apos;ve been building. More case studies coming soon.
-        </p>
+    const [featured, ...others] = PROJECTS;
+    const count = PROJECTS.length;
 
-        <StaggerGrid className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((project, index) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              index={index}
-              total={PROJECTS.length}
-            />
-          ))}
-          <ComingSoonProjectCard />
-        </StaggerGrid>
-      </div>
-    </AnimatedSection>
-  );
+    return (
+        <Section id="projects" title="Things I've built and shipped" command="ls ./projects --featured">
+            <FeaturedProject project={featured} />
+
+            {others.length > 0 && (
+                <ul className="flex flex-wrap gap-6">
+                    {others.map((project, i) => (
+                        <li key={project.slug} className="flex min-w-0 flex-[1_1_380px]">
+                            <ProjectCard project={project} position={i + 2} />
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            <p className="text-body-sm text-ink-muted">
+                <span className="text-signal" aria-hidden="true">
+                    ✓
+                </span>{" "}
+                {count} {count === 1 ? "project" : "projects"} listed{" "}
+                <span className="text-amber" aria-hidden="true">
+                    ·
+                </span>{" "}
+                more case studies in progress
+            </p>
+        </Section>
+    );
 }
