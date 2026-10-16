@@ -20,6 +20,26 @@ import { StaticImageData } from 'next/image';
 
 export const PROJECTS: Project[] = [
     {
+        slug: "charlotte",
+        name: "Charlotte — Case Study",
+        description:
+            "An online storefront for a made-to-order pâtisserie Concept project · UI/UX design, design system and front-end architecture",
+        summary:
+            "Charlotte is a made-to-order cake shop for signature cakes, petits gâteaux, gift boxes and custom celebration cakes, for collection or delivery. The brief was to design the online experience around one brand colour, #ED96D7, taking cues from a cake-shop landing page on Dribbble. The result is an editorial storefront on a warm cream ground: a refined serif with one italic accent word per headline, quiet uppercase labels, hairlines instead of shadows, and the brand pink used as large, confident fields. Every product sits inside an arch. I took the design through three visual directions, then turned the chosen one into a working prototype, a handoff spec for a Next.js build, and a reusable design system.",
+        tags: ["E-commerce", "Full-stack"],
+        stack: ["Next.js", "TypeScript", "Supabase", "Vite", "TailwindCSS"],
+        features: [
+            "Coming soon",
+        ],
+        role: "Solo developer",
+        year: "2026",
+        liveUrl: "https://charlotte-jade-psi.vercel.app/",
+        repoUrl: "https://github.com/cirilobucatcat/charlotte",
+        image: '',
+        imageAlt: "Preview of the Charlotte interface",
+        gallery: [],
+    },,
+    {
         slug: "weakchat",
         name: "WeakChat: Building a Chat App That Doesn't Lie to Its Users",
         description:
