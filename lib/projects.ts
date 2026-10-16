@@ -38,7 +38,7 @@ export const PROJECTS: Project[] = [
         image: weakChatMain,
         imageAlt: "Preview of the Charlotte interface",
         gallery: [],
-    },,
+    },
     {
         slug: "weakchat",
         name: "WeakChat: Building a Chat App That Doesn't Lie to Its Users",
