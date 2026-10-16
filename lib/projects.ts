@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
         year: "2026",
         liveUrl: "https://charlotte-jade-psi.vercel.app/",
         repoUrl: "https://github.com/cirilobucatcat/charlotte",
-        image: '',
+        image: weakChatMain,
         imageAlt: "Preview of the Charlotte interface",
         gallery: [],
     },,
